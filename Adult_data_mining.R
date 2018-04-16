@@ -122,11 +122,11 @@ auc <- performance(pr, measure = "auc")
 auc <- auc@y.values[[1]]
 auc
 
-# pression and recall
+# precision and recall
 perf <- performance(pr, "prec", "rec")
 plot(perf)
 
-# pression and recall under threshold 0.3
+# precision and recall under threshold 0.3
 classre <- ifelse(testre > 0.3,">50K", "<=50K")
 realT <- which(test$income == '>50K')
 realF <- which(test$income == '<=50K')
@@ -135,7 +135,7 @@ testF <- which(unname(classre) == '<=50K')
 pressions <- length(intersect(realT, testT))/(length(intersect(realT, testT)) + length(intersect(realF, testT)))
 recall <- length(intersect(realT, testT))/(length(intersect(realT, testT)) + length(intersect(realT, testF)))
 
-# pression and recall under different threshold
+# precision and recall under different threshold
 prtable <- as.data.frame(matrix(0, nrow = 9, ncol = 3))
 colnames(prtable) = c('Threshold', 'pression', 'recall')
 for (th in 1:9){
